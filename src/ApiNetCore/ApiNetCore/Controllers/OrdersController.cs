@@ -54,7 +54,7 @@ namespace ApiNetCore.Controllers
         }
 
         [HttpPost("{customerId}/orders")]
-        public IActionResult CreateOrder(int customerId, [FromBody] OrderForCreationDTO order)
+        public IActionResult CreateOrder(int customerId, [FromBody] OrderForCreateDTO order)
         {
             if (order is null)
             {
@@ -78,17 +78,35 @@ namespace ApiNetCore.Controllers
                 orderDomain);
         }
 
-        //// POST: api/Orders
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
+        [HttpPut("{customerId}/orders/{id}")]
+        public IActionResult UpdateOrder(int customerId, int id, [FromBody] OrderForUpdateDTO order)
+        {
+            if (order is null)
+            {
+                return BadRequest();
+            }
 
-        //// PUT: api/Orders/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
+            var customer = Repository.Instance
+                .Customers.FirstOrDefault(c => c.Id == customerId);
+
+            if (customer is null)
+            {
+                return NotFound();
+            }
+
+            if (customer.Orders is null)
+            {
+                return NotFound();
+            }
+            var orderDomain = customer.Orders.FirstOrDefault(o => o.OrderId == id);
+            if (orderDomain is null)
+            {
+                return NotFound();
+            }
+
+            orderDomain.Update(order);
+            return NoContent();
+        }
 
         //// DELETE: api/ApiWithActions/5
         //[HttpDelete("{id}")]

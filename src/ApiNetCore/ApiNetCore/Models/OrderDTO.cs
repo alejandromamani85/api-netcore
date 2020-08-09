@@ -22,5 +22,21 @@ namespace ApiNetCore.Models
         public string ShipPostalCode { get; set; }
         public string ShipCountry { get; set; }
 
+        internal void Update(OrderForUpdateDTO order)
+        {
+            order.CustomerId = CustomerId;
+            order.EmployeeId = EmployeeId;
+            order.OrderDate = OrderDate;
+            order.RequiredDate = RequiredDate;
+            order.ShippedDate = ShippedDate;
+            order.ShipVia = ShipVia;
+            order.Freight = Freight;
+            order.ShipName = ShipName;
+            order.ShipAddress = ShipAddress;
+            order.ShipCity = ShipCity;
+            order.ShipRegion = ShipRegion;
+            order.ShipPostalCode = ShipPostalCode;
+            order.ShipCountry = ShipCountry;
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApiNetCore.Models
 {
-    public class OrderForCreateDTO
+    public class OrderForUpdateDTO
     {
         //public int OrderId { get; set; }
         [Required]
@@ -19,30 +19,30 @@ namespace ApiNetCore.Models
         public decimal Freight { get; set; }
         public string ShipName { get; set; }
         [MinLength(10, ErrorMessage = "Ship Address too short")]
-        public string ShipAddress { get; set; } 
+        public string ShipAddress { get; set; }
         public string ShipCity { get; set; }
         public string ShipRegion { get; set; }
         public string ShipPostalCode { get; set; }
         public string ShipCountry { get; set; }
 
-        internal OrderDTO ToDomain(int maxOrderId)
-        {
-            var order = new OrderDTO();
-            order.OrderId = ++maxOrderId;
-            order.CustomerId = CustomerId;
-            order.EmployeeId = EmployeeId;
-            order.OrderDate = OrderDate;
-            order.RequiredDate = RequiredDate;
-            order.ShippedDate = ShippedDate;
-            order.ShipVia = ShipVia;
-            order.Freight = Freight;
-            order.ShipName = ShipName;
-            order.ShipAddress = ShipAddress;
-            order.ShipCity = ShipCity;
-            order.ShipRegion = ShipRegion;
-            order.ShipPostalCode = ShipPostalCode;
-            order.ShipCountry = ShipCountry;
-            return order;
-        }
+        //internal OrderDTO MapToDomain(int maxOrderId)
+        //{
+        //    var order = new OrderDTO();
+        //    //order.OrderId = ++maxOrderId;
+        //    order.CustomerId = CustomerId;
+        //    order.EmployeeId = EmployeeId;
+        //    order.OrderDate = OrderDate;
+        //    order.RequiredDate = RequiredDate;
+        //    order.ShippedDate = ShippedDate;
+        //    order.ShipVia = ShipVia;
+        //    order.Freight = Freight;
+        //    order.ShipName = ShipName;
+        //    order.ShipAddress = ShipAddress;
+        //    order.ShipCity = ShipCity;
+        //    order.ShipRegion = ShipRegion;
+        //    order.ShipPostalCode = ShipPostalCode;
+        //    order.ShipCountry = ShipCountry;
+        //    return order;
+        //}
     }
 }
